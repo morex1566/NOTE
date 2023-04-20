@@ -35,6 +35,6 @@ class Son : public Parent
     void function()
     {
         // warning triggered!
-        pf.data;
+        //pf.data;
     }
 };
