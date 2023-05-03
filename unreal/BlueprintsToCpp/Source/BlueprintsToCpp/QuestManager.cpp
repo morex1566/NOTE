@@ -18,9 +18,18 @@ void AQuestManager::BeginPlay()
 	Super::BeginPlay();
 }
 
+int AQuestManager::GetFour()
+{
+	return 4;
+}
+
 // Called every frame
 void AQuestManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AQuestManager::CompleteQuest_Implementation(FName questId, bool completeWholeQuest)
+{
 }
