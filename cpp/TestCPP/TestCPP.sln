@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Case4_Communication", "Case
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Case5_LoadingData", "Case5_LoadingData\Case5_LoadingData.vcxproj", "{394869FD-CEFA-4E98-B5D8-A59EF1D37AD4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Case6_LogSystem", "Case6_LogSystem\Case6_LogSystem.vcxproj", "{FD886E06-2410-4EA7-928E-26F067F6372D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -58,5 +60,13 @@ Global
 		{394869FD-CEFA-4E98-B5D8-A59EF1D37AD4}.Release|Win32.Build.0 = Release|Win32
 		{394869FD-CEFA-4E98-B5D8-A59EF1D37AD4}.Release|x64.ActiveCfg = Release|x64
 		{394869FD-CEFA-4E98-B5D8-A59EF1D37AD4}.Release|x64.Build.0 = Release|x64
+		{FD886E06-2410-4EA7-928E-26F067F6372D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FD886E06-2410-4EA7-928E-26F067F6372D}.Debug|Win32.Build.0 = Debug|Win32
+		{FD886E06-2410-4EA7-928E-26F067F6372D}.Debug|x64.ActiveCfg = Debug|x64
+		{FD886E06-2410-4EA7-928E-26F067F6372D}.Debug|x64.Build.0 = Debug|x64
+		{FD886E06-2410-4EA7-928E-26F067F6372D}.Release|Win32.ActiveCfg = Release|Win32
+		{FD886E06-2410-4EA7-928E-26F067F6372D}.Release|Win32.Build.0 = Release|Win32
+		{FD886E06-2410-4EA7-928E-26F067F6372D}.Release|x64.ActiveCfg = Release|x64
+		{FD886E06-2410-4EA7-928E-26F067F6372D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal

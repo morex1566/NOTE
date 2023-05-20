@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{317846F1-A08E-4920-A7EA-84D73B0B95D6}</ProjectGuid>
+    <ProjectGuid>{FD886E06-2410-4EA7-928E-26F067F6372D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Observer</RootNamespace>
+    <RootNamespace>Case6_LogSystem</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -154,15 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Achievement.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Observer.cpp" />
-    <ClCompile Include="Player.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Achievement.h" />
-    <ClInclude Include="Observer.h" />
-    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
