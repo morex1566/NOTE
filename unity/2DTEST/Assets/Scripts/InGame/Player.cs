@@ -10,19 +10,19 @@ namespace InGame
         [Tooltip("플레이어의 이동속도")]
         [SerializeField] private float speed;
 
+        
         private Vector2 _inputVec;
         private Vector2 _nextVec;
 
+        
         #region Getter/Setter 선언
 
         public ref Vector2 InputVec => ref _inputVec;
         public ref Vector2 NextVec => ref _nextVec;
+        
         public SpriteRenderer Spriter { get; private set; }
-
         public Rigidbody2D Rigid2D { get; private set; }
-
         public Animator Anim { get; private set; }
-
         public float Speed => speed;
 
         #endregion

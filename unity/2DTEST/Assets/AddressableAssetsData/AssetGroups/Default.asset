@@ -16,15 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 886a18b9df547df4cbdf48e0bf390d44
-  m_SerializeEntries:
-  - m_GUID: 9b9174627de6b8e439f45e14cfd870e6
-    m_Address: Zombie
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6867ad7593e22a94fb6511cca397f216
-    m_Address: Weapon
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e5708adb6c0c5044fa484ae574e7a170, type: 2}
   m_SchemaSet:
