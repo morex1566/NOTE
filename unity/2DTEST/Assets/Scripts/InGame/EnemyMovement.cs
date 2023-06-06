@@ -16,7 +16,7 @@ namespace InGame
 
         private void FixedUpdate()
         {
-            _enemy.NextVec = (getNearlistPlayerPos() - transform.position).normalized
+            _enemy.NextVec = (getNearestPlayerPos() - transform.position).normalized
                           * (_enemy.Data.Speed * Time.fixedDeltaTime);
             
             _enemy.Rigid2D.MovePosition(_enemy.Rigid2D.position + _enemy.NextVec);
@@ -27,7 +27,7 @@ namespace InGame
             
         }
 
-        private Vector3 getNearlistPlayerPos()
+        private Vector3 getNearestPlayerPos()
         {
             Vector2 resultPos = Vector2.zero;
             

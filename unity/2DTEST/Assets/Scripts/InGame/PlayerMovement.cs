@@ -14,8 +14,8 @@ namespace InGame
 
         private void FixedUpdate()
         {
-            _player.NextVec = _player.InputVec * (_player.Speed * Time.fixedDeltaTime);
-            _player.Rigid2D.MovePosition(_player.Rigid2D.position + _player.NextVec);
+            _player.NextVec = _player.InputVec * _player.Speed;
+            _player.Rigid2D.MovePosition(_player.Rigid2D.position + _player.NextVec * Time.fixedDeltaTime);
         }
         
         public void OnMove(InputValue value)

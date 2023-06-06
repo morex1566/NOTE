@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ScriptableObject
 {
@@ -8,6 +9,9 @@ namespace ScriptableObject
         [SerializeField] private float _health;
         [SerializeField] private float _speed;
         [SerializeField] private float _damage;
+
+        [SerializeField] private RuntimeAnimatorController animController;
+        [SerializeField] private Sprite bodySprite;
 
         public float Health
         {
@@ -25,6 +29,18 @@ namespace ScriptableObject
         {
             get => _damage;
             set => _damage = value;
+        }
+
+        public RuntimeAnimatorController AnimController
+        {
+            get => animController;
+            set => animController = value;
+        }
+
+        public Sprite BodySprite
+        {
+            get => bodySprite;
+            set => bodySprite = value;
         }
     }
 }

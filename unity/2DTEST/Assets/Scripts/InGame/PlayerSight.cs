@@ -69,7 +69,7 @@ namespace InGame
                     if(enemy.Watcher.Count == 0)
                     {
                         enemy.OnRepositionAt(_player.Rigid2D.position
-                                             + (_player.NextVec * 20)
+                                             + (_player.InputVec * 20)
                                              + (new Vector2(Random.Range(-3f, 3f), Random.Range(-3f, 3f))));
 
                         enemy.IsRepositionable = false;

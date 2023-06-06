@@ -41,7 +41,8 @@ namespace InGame
 
         private void Start()
         {
-            
+            Spriter.sprite = data.BodySprite;
+            Anim.runtimeAnimatorController = data.AnimController;
         }
     }
 }
