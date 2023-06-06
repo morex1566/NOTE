@@ -13,7 +13,7 @@ namespace InGame
         [SerializeField] private float speed;
 
         [Tooltip("플레이어의 무기")] 
-        [SerializeField] private SO_Weapon weapon;
+        [SerializeField] private GameObject weapon;
 
         
         private Vector2 _inputVec;
@@ -25,7 +25,7 @@ namespace InGame
         public ref Vector2 InputVec => ref _inputVec;
         public ref Vector2 NextVec => ref _nextVec;
 
-        public SO_Weapon Weapon
+        public GameObject Weapon
         {
             get => weapon;
             set => weapon = value;

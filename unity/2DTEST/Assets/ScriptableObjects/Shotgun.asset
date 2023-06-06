@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   damage: 10
-  range: 15
+  range: 5
   bodySprite: {fileID: 1772703093, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-  bullets: 6
+  attackSpeed: 1.5
+  bullet: {fileID: 0}
+  ammo: 6
