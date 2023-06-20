@@ -1,5 +1,0 @@
-var searchData=
-[
-  ['comment_2ecpp_0',['Comment.cpp',['../_comment_8cpp.html',1,'']]],
-  ['comment_2eh_1',['Comment.h',['../_comment_8h.html',1,'']]]
-];

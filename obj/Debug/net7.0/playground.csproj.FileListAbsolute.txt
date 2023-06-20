@@ -1,5 +1,0 @@
-D:\projects\playground\obj\Debug\net7.0\playground.csproj.AssemblyReference.cache
-D:\projects\playground\obj\Debug\net7.0\playground.GeneratedMSBuildEditorConfig.editorconfig
-D:\projects\playground\obj\Debug\net7.0\playground.AssemblyInfoInputs.cache
-D:\projects\playground\obj\Debug\net7.0\playground.AssemblyInfo.cs
-D:\projects\playground\obj\Debug\net7.0\playground.csproj.CoreCompileInputs.cache
