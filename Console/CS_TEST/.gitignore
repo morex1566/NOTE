@@ -1,0 +1,6 @@
+# .gitignore in the CPP_TEST folder
+
+/.vs/
+/x64/
+/Sources/**/bin/
+/Sources/**/obj/
