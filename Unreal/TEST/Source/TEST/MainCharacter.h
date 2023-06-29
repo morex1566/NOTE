@@ -12,6 +12,7 @@
 #include "MainCharacter.generated.h"
 
 class UCameraComponent;
+class USpringArmComponent;
 
 
 UCLASS()
@@ -34,11 +35,11 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	void OnMoveForward(const FInputActionValue& Value);
-	void OnMoveBackward(const FInputActionValue& Value);
-	void OnMoveRightward(const FInputActionValue& Value);
-	void OnMoveLeftward(const FInputActionValue& Value);
+	void OnLook(const FInputActionValue& Value);
+	void OnMove(const FInputActionValue& Value);
 	void OnJump(const FInputActionValue& Value);
+	void OnRun(const FInputActionValue& Value);
+	void OnCrouch(const FInputActionValue& Value);
 
 protected:
 
@@ -48,13 +49,24 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 		TObjectPtr<UCameraComponent> FirstPersonCameraComponent;
 
-	UPROPERTY(EditAnywhere, Category = Input, DisplayName = "입력 매핑 컨텍스트")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+		TObjectPtr<USpringArmComponent> SpringArmComponent;
+
+	UPROPERTY(EditAnywhere, Category = Input, DisplayName = "Input")
 		TObjectPtr<UInputMappingContext> InputMappingContext;
 
-	UPROPERTY(EditAnywhere, Category = Input, DisplayName = "수직 이동 액션")
-		TObjectPtr<UInputAction> InputAction;
+	UPROPERTY(EditAnywhere, Category = Input, DisplayName = "Look Action")
+		TObjectPtr<UInputAction> LookAction;
 
+	UPROPERTY(EditAnywhere, Category = Input, DisplayName = "Move Action")
+		TObjectPtr<UInputAction> MoveAction;
 
-	UPROPERTY(EditAnywhere, Category = "캐릭터 스테이터스", DisplayName = "속도")
-	float Speed;
+	UPROPERTY(EditAnywhere, Category = Input, DisplayName = "Jump Action")
+		TObjectPtr<UInputAction> JumpAction;
+
+	UPROPERTY(EditAnywhere, Category = Input, DisplayName = "Run Action")
+		TObjectPtr<UInputAction> RunAction;
+
+	UPROPERTY(EditAnywhere, Category = Input, DisplayName = "Crouch Action")
+		TObjectPtr<UInputAction> CrouchAction;
 };

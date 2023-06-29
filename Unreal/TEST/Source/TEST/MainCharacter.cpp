@@ -2,9 +2,13 @@
 
 
 #include "MainCharacter.h"
+
+#include <string>
+
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 
 
 // Sets default values
@@ -15,16 +19,22 @@ AMainCharacter::AMainCharacter()
 
 	// Initialize and Attach Component
 	{
+		SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm Component"));
+		if (SpringArmComponent)
+		{
+			SpringArmComponent->SetupAttachment(RootComponent);
+		}
+
 		ThirdPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Third Person Camera"));
 		if (ThirdPersonCameraComponent)
 		{
-			ThirdPersonCameraComponent->SetupAttachment(RootComponent);
+			ThirdPersonCameraComponent->SetupAttachment(SpringArmComponent);
 		}
 
 		FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("First Person Camera"));
 		if (FirstPersonCameraComponent)
 		{
-			FirstPersonCameraComponent->SetupAttachment(RootComponent);
+			FirstPersonCameraComponent->SetupAttachment(SpringArmComponent);
 		}
 	}
 }
@@ -47,7 +57,6 @@ void AMainCharacter::BeginPlay()
 void AMainCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -57,30 +66,53 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 
-	EnhancedInputComponent->BindAction(InputAction, ETriggerEvent::Triggered, this, &AMainCharacter::OnMoveForward);
+	EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMainCharacter::OnLook);
+	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMainCharacter::OnMove);
+	EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AMainCharacter::OnJump);
+	EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Triggered, this, &AMainCharacter::OnRun);
+	EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Triggered, this, &AMainCharacter::OnCrouch);
 }
 
-void AMainCharacter::OnMoveForward(const FInputActionValue& Value)
+void AMainCharacter::OnLook(const FInputActionValue& Value)
 {
-	// TODO : 이동하는 함수?
-	// 물리 이동 + 좌표 이동
+	const FVector2D& AxisInputValue = Value.Get<FVector2D>();
 
-	GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, Value.ToString());
+	GEngine->AddOnScreenDebugMessage(7, 1, FColor::Red, FString::Printf(TEXT("on look X: %f"), AxisInputValue.X));
+	GEngine->AddOnScreenDebugMessage(8, 1, FColor::Red, FString::Printf(TEXT("on look Y: %f"), AxisInputValue.Y));
+
+
+	AddControllerYawInput(AxisInputValue.X);
+	AddControllerPitchInput(-AxisInputValue.Y);
 }
 
-void AMainCharacter::OnMoveBackward(const FInputActionValue& Value)
+void AMainCharacter::OnMove(const FInputActionValue& Value)
 {
+	FQuat			 Rotator		= FQuat(FVector::UpVector, FMath::DegreesToRadians(90));
+	const FVector2D& MoveInputValue		= Value.Get<FVector2D>();
 
-}
+	FVector ForwardVector	= GetActorForwardVector();
+	FVector RightwardVector = Rotator.RotateVector(ForwardVector);
+	FVector MoveVector = (ForwardVector * MoveInputValue.X + RightwardVector * MoveInputValue.Y);
+	MoveVector.Normalize(1);
 
-void AMainCharacter::OnMoveRightward(const FInputActionValue& Value)
-{
-}
+	GEngine->AddOnScreenDebugMessage(1, 1, FColor::Red, Value.ToString());
+	GEngine->AddOnScreenDebugMessage(2, 1, FColor::Red, FString::Printf(TEXT("X: %f"), MoveInputValue.X));
+	GEngine->AddOnScreenDebugMessage(3, 1, FColor::Red, FString::Printf(TEXT("Y: %f"), MoveInputValue.Y));
+	GEngine->AddOnScreenDebugMessage(4, 1, FColor::Red, MoveVector.ToString());
+	GEngine->AddOnScreenDebugMessage(5, 1, FColor::Red, FString::Printf(TEXT("Value: %f"), Value.GetMagnitude()));
 
-void AMainCharacter::OnMoveLeftward(const FInputActionValue& Value)
-{
+	AddMovementInput(MoveVector, Value.GetMagnitude());
+
 }
 
 void AMainCharacter::OnJump(const FInputActionValue& Value)
+{
+}
+
+void AMainCharacter::OnRun(const FInputActionValue& Value)
+{
+}
+
+void AMainCharacter::OnCrouch(const FInputActionValue& Value)
 {
 }
