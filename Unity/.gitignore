@@ -80,3 +80,5 @@ crashlytics-build.properties
 
 # Ignore ProjectSettings folder
 /ProjectSettings/
+/UserSettings/
+/Temp/
