@@ -1,7 +1,0 @@
-# .gitignore in the CPP_TEST folder
-
-.vs/
-x64/
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
