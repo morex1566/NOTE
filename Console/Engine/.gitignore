@@ -1,0 +1,8 @@
+# Ignore Visual Studio .vs folder
+.vs/
+
+# Ignore x64 folder
+x64/
+
+# Ignore all x64 folder
+**/x64/
