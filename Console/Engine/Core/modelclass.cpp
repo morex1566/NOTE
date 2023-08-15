@@ -387,6 +387,11 @@ Mesh ModelClass::ProcessMesh(const aiMesh* mesh, const aiNode* node)
 				vertexType.texture.x = static_cast<float>(mesh->mTextureCoords[0][i].x);
 				vertexType.texture.y = static_cast<float>(mesh->mTextureCoords[0][i].y);
 			}
+
+			// Set normals.
+			vertexType.normal.x = mesh->mNormals[i].x;
+			vertexType.normal.y = mesh->mNormals[i].y;
+			vertexType.normal.z = mesh->mNormals[i].z;
 		}
 
 		vertices.emplace_back(vertexType);
