@@ -190,6 +190,8 @@ xcopy /y /d "$(SolutionDir)Plugins\D3DX9_42.dll" "$(OutDir)"</Command>
     <ClInclude Include="pch.h" />
     <ClInclude Include="systemclass.h" />
     <ClInclude Include="textureclass.h" />
+    <ClInclude Include="Types.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="applicationclass.cpp" />

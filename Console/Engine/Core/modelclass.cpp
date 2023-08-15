@@ -1,9 +1,10 @@
-
 #include "pch.h"
 #include "modelclass.h"
+#include "Mesh.h"
 
 
 ModelClass::ModelClass()
+	: device(nullptr), deviceContext(nullptr), m_vertexCount(0), m_indexCount(0)
 {
 	m_vertexBuffer = 0;
 	m_indexBuffer = 0;
@@ -24,8 +25,10 @@ ModelClass::~ModelClass()
 
 bool ModelClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* modelFilename, char* textureFilename)
 {
-	bool result;
+	this->device = device;
+	this->deviceContext = deviceContext;
 
+	bool result;
 
 	// Load in the model data.
 	result = LoadModel(modelFilename);
@@ -44,6 +47,30 @@ bool ModelClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceCon
 	// Load the texture for this model.
 	result = LoadTexture(device, deviceContext, textureFilename);
 	if(!result)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool ModelClass::Initialize(const std::string& modelFilePath, const std::string& textureFilePath, ID3D11Device* device, ID3D11DeviceContext* deviceContext)
+{
+	this->device = device;
+	this->deviceContext = deviceContext;
+
+	bool result;
+
+	// Load in the model data.
+	result = LoadModel(modelFilePath);
+	if (!result)
+	{
+		return false;
+	}
+
+	// Load the texture for this model.
+	result = LoadTexture(device, deviceContext, textureFilePath.c_str());
+	if (!result)
 	{
 		return false;
 	}
@@ -73,6 +100,11 @@ void ModelClass::Render(ID3D11DeviceContext* deviceContext)
 	RenderBuffers(deviceContext);
 
 	return;
+}
+
+void ModelClass::Render()
+{
+	RenderBuffers();
 }
 
 
@@ -207,8 +239,16 @@ void ModelClass::RenderBuffers(ID3D11DeviceContext* deviceContext)
 	return;
 }
 
+void ModelClass::RenderBuffers()
+{
+	for (auto& mesh : meshes)
+	{
+		mesh.Draw();
+	}
+}
 
-bool ModelClass::LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename)
+
+bool ModelClass::LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const char* filename)
 {
 	bool result;
 
@@ -295,6 +335,78 @@ bool ModelClass::LoadModel(char* filename)
 	return true;
 }
 
+bool ModelClass::LoadModel(const std::string& filePath)
+{
+	Assimp::Importer importer;
+
+	const aiScene* scene = importer.ReadFile(filePath, aiProcess_Triangulate | aiProcess_ConvertToLeftHanded);
+	if (scene == nullptr)
+	{
+		return true;
+	}
+
+	ProcessNode(scene->mRootNode, scene);
+
+	return true;
+}
+
+void ModelClass::ProcessNode(const aiNode* node, const aiScene* scene)
+{
+	for (uint i = 0; i < node->mNumMeshes; i++)
+	{
+		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
+		meshes.emplace_back(ProcessMesh(mesh, node));
+	}
+
+	for (uint i = 0; i < node->mNumChildren; i++)
+	{
+		ProcessNode(node->mChildren[i], scene);
+	}
+}
+
+Mesh ModelClass::ProcessMesh(const aiMesh* mesh, const aiNode* node)
+{
+	vector<VertexType>		vertices;
+	vector<DWORD>			indices;
+
+	// Get vertices.
+	for (uint i = 0; i < mesh->mNumVertices; i++)
+	{
+		VertexType vertexType;
+		{
+			// Set positions.
+			vertexType.position.x = mesh->mVertices[i].x;
+			vertexType.position.y = mesh->mVertices[i].y;
+			vertexType.position.z = mesh->mVertices[i].z;
+
+			// Set texture coordinates.
+			// Index '0' means that the main texture of model.
+			// If the model has another textures, ex. normal textures..., change the index.
+			if (mesh->mTextureCoords[0])
+			{
+				vertexType.texture.x = static_cast<float>(mesh->mTextureCoords[0][i].x);
+				vertexType.texture.y = static_cast<float>(mesh->mTextureCoords[0][i].y);
+			}
+		}
+
+		vertices.emplace_back(vertexType);
+		m_vertexCount++;
+	}
+
+	// Get indices.
+	for (uint i = 0; i < mesh->mNumFaces; i++)
+	{
+		aiFace face = mesh->mFaces[i];
+
+		for (uint j = 0; j < face.mNumIndices; j++)
+		{
+			indices.push_back(face.mIndices[j]);
+			m_indexCount++;
+		}
+	}
+
+	return Mesh(device, deviceContext, vertices, indices);
+}
 
 void ModelClass::ReleaseModel()
 {
