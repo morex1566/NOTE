@@ -12,6 +12,9 @@
 
 #include <wrl/client.h>
 #include <DirectXMath.h>
+#include <DirectXTex/DirectXTex.h>
+#include <locale>
+#include <codecvt>
 #include <d3d11.h>
 
 /**

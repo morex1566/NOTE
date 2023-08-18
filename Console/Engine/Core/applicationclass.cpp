@@ -1,6 +1,9 @@
 
 #include "pch.h"
 #include "applicationclass.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_win32.h"
+#include "imgui/imgui_impl_dx11.h"
 
 
 ApplicationClass::ApplicationClass()
@@ -40,11 +43,30 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	// Create and initialize the Imgui framework.
+	{
+		IMGUI_CHECKVERSION();
+		ImGui::CreateContext();
+		ImGuiIO& io = ImGui::GetIO();
+		{
+			io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+			io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+		}
+
+		// Setup Dear ImGui style
+		ImGui::StyleColorsDark();
+
+		// Setup Platform/Renderer backends
+		ImGui_ImplWin32_Init(hwnd);
+		ImGui_ImplDX11_Init(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext());
+	}
+
+
 	// Create the camera object.
 	m_Camera = new CameraClass;
 
 	// Set the initial position of the camera.
-	m_Camera->SetPosition(0.0f, 0.0f, -4.0f);
+	m_Camera->SetPosition(0.0f, 0.0f, -15.0f);
 
 	// Set the file name of the model.
 	strcpy_s(modelFilename, "../Resources/cube.txt");
@@ -62,8 +84,8 @@ bool ApplicationClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	//	return false;
 	//}
 
-	std::string modelPath = "../Resources/untitled.fbx";
-	std::string texturePath = "../Resources/stone01.tga";
+	std::string modelPath = "../Resources/sphere.fbx";
+	std::string texturePath = "../Resources/stone.jpg";
 
 	result = m_Model->Initialize(modelPath, texturePath, m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext());
 	if (!result)
@@ -132,6 +154,13 @@ void ApplicationClass::Shutdown()
 		m_Direct3D = 0;
 	}
 
+	// Release the Imgui framework.
+	{
+		ImGui_ImplDX11_Shutdown();
+		ImGui_ImplWin32_Shutdown();
+		ImGui::DestroyContext();
+	}
+
 	return;
 }
 
@@ -140,7 +169,6 @@ bool ApplicationClass::Frame()
 {
 	static float rotation = 0.0f;
 	bool result;
-
 
 	// Update the rotation variable each frame.
 	rotation -= 0.0174532925f * 1.0f;
@@ -168,6 +196,24 @@ bool ApplicationClass::Render(float rotation)
 
 	// Clear the buffers to begin the scene.
 	m_Direct3D->BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
+
+	// (Your code process and dispatch Win32 messages)
+	// Start the Dear ImGui frame
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
+	{
+		ImGui::Begin("Hello, world!");
+		ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+		ImGui::End();
+	}
+
+	// Rendering
+	// (Your code clears your framebuffer, renders your other stuff etc.)
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	// Generate the view matrix based on the camera's position.
 	m_Camera->Render();

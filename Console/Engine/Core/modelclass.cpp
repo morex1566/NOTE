@@ -252,12 +252,19 @@ bool ModelClass::LoadTexture(ID3D11Device* device, ID3D11DeviceContext* deviceCo
 {
 	bool result;
 
-
 	// Create and initialize the texture object.
 	m_Texture = new TextureClass;
 
-	result = m_Texture->Initialize(device, deviceContext, filename);
-	if(!result)
+	//result = m_Texture->Initialize(device, deviceContext, filename);
+	//if(!result)
+	//{
+	//	return false;
+	//}
+
+	std::string filePath = filename;
+
+	result = m_Texture->Initialize(device, deviceContext, filePath);
+	if (!result)
 	{
 		return false;
 	}

@@ -1,7 +1,8 @@
 
 #include "pch.h"
 #include "textureclass.h"
-
+#include <DirectXTex/DDSTextureLoader11.h>
+#include <DirectXTex/WICTextureLoader11.h>
 
 TextureClass::TextureClass()
 {
@@ -83,6 +84,22 @@ bool TextureClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceC
 	delete [] m_targaData;
 	m_targaData = 0;
 
+	return true;
+}
+
+bool TextureClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const std::string& filePath)
+{
+	bool result;
+
+	this->device = device;
+	this->deviceContext = deviceContext;
+
+	result = LoadWICTexture(filePath);
+	if (!result)
+	{
+		return false;
+	}
+	
 	return true;
 }
 
@@ -209,7 +226,6 @@ bool TextureClass::LoadTarga32Bit(const char* filename)
 	return true;
 }
 
-
 int TextureClass::GetWidth()
 {
     return m_width;
@@ -219,4 +235,17 @@ int TextureClass::GetWidth()
 int TextureClass::GetHeight()
 {
     return m_height;
+}
+
+bool TextureClass::LoadWICTexture(const std::string& filePath)
+{
+	HRESULT result;
+
+	result = CreateWICTextureFromFile(device, deviceContext, StringToWString(filePath).c_str(), &resource, &m_textureView);
+	if (FAILED(result))
+	{
+		return false;
+	}
+
+	return true;
 }

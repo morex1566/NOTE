@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="외부 파일">
+      <UniqueIdentifier>{5dad0d3e-40b3-47ff-aad6-191d62ae205b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="textureclass.h">
@@ -88,6 +91,54 @@
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\DirectXTex\WICTextureLoader12.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\DirectXTex\WICTextureLoader11.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\DirectXTex\WICTextureLoader9.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\DirectXTex\DDSTextureLoader12.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\DirectXTex\DDSTextureLoader11.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\DirectXTex\DDSTextureLoader9.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\imgui\imgui_widgets.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\imgui\imgui_tables.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\imgui\imgui_impl_win32.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\imgui\imgui_impl_dx12.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\imgui\imgui_impl_dx11.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\imgui\imgui_impl_dx10.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\imgui\imgui_impl_dx9.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\imgui\imgui_draw.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\imgui\imgui_demo.cpp">
+      <Filter>외부 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Includes\imgui\imgui.cpp">
+      <Filter>외부 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
