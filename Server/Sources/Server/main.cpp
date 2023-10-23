@@ -73,6 +73,35 @@ int main()
 		char clientIP[20];
 		inet_ntop(AF_INET, &clientAddress.sin_addr, clientIP, sizeof(clientIP));
 		std::cout << "client ip address : " << clientIP << std::endl;
+
+
+		while(true)
+		{
+			char		receiveBuffer[100];
+			int			byte;
+
+			byte = recv(clientSocket, receiveBuffer, std::size(receiveBuffer), 0);
+			if ( byte <= 0 )
+			{
+				std::cout << "recv() is failed. " << "code : " << WSAGetLastError() << std::endl;
+				return 0;
+			}
+
+			std::cout << "receive : " << receiveBuffer << std::endl;
+
+			char		sendBuffer[100] = "hello world";
+			int			error;
+
+			error = send(clientSocket, sendBuffer, std::size(sendBuffer), 0);
+			if (error == SOCKET_ERROR)
+			{
+				std::cout << "send() is failed. " << "code : " << WSAGetLastError() << std::endl;
+				return 0;
+			}
+
+			std::cout << "send : " << receiveBuffer << std::endl;
+
+		}
 	}
 
 

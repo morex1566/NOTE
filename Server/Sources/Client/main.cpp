@@ -52,6 +52,30 @@ int main()
 
 	while (true)
 	{
+		char		sendBuffer[100] = "hello world";
+		int			error;
+
+		error = send(clientSocket, sendBuffer, std::size(sendBuffer), 0);
+		if (error == SOCKET_ERROR)
+		{
+			std::cout << "send() is failed. " << "code : " << WSAGetLastError() << std::endl;
+			return 0;
+		}
+
+		std::cout << "send : " << sendBuffer << std::endl;
+
+		char		receiveBuffer[100];
+		int			byte;
+
+		byte = recv(clientSocket, receiveBuffer, std::size(receiveBuffer), 0);
+		if ( byte <= 0 )
+		{
+			std::cout << "recv() is failed. " << "code : " << WSAGetLastError() << std::endl;
+			return 0;
+		}
+
+		std::cout << "receive : " << receiveBuffer << std::endl;
+
 		std::this_thread::sleep_for(1s);
 	}
 
