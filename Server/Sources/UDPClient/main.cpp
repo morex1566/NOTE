@@ -24,7 +24,7 @@ int main()
 		return 0;
 	}
 
-	clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+	clientSocket = socket(AF_INET, SOCK_DGRAM, 0);
 	if (clientSocket == INVALID_SOCKET)
 	{
 		std::cout << "socket() is failed. " << "code : " << WSAGetLastError() << std::endl;
@@ -68,7 +68,7 @@ int main()
 		int			byte;
 
 		byte = recv(clientSocket, receiveBuffer, std::size(receiveBuffer), 0);
-		if ( byte <= 0 )
+		if (byte <= 0)
 		{
 			std::cout << "recv() is failed. " << "code : " << WSAGetLastError() << std::endl;
 			return 0;
