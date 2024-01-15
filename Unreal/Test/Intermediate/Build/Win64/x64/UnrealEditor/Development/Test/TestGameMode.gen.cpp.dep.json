@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\devs\\github\\note\\unreal\\test\\intermediate\\build\\win64\\unrealeditor\\inc\\test\\uht\\testgamemode.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\devs\\github\\note\\unreal\\test\\intermediate\\build\\win64\\x64\\testeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "d:\\devs\\github\\note\\unreal\\test\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\test\\definitions.test.h",
+            "d:\\devs\\github\\note\\unreal\\test\\source\\test\\testgamemode.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
+            "d:\\devs\\github\\note\\unreal\\test\\intermediate\\build\\win64\\unrealeditor\\inc\\test\\uht\\testgamemode.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

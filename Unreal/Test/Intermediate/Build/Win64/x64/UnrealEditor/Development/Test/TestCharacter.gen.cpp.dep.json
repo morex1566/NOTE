@@ -1,0 +1,23 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\devs\\github\\note\\unreal\\test\\intermediate\\build\\win64\\unrealeditor\\inc\\test\\uht\\testcharacter.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\devs\\github\\note\\unreal\\test\\intermediate\\build\\win64\\x64\\testeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "d:\\devs\\github\\note\\unreal\\test\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\test\\definitions.test.h",
+            "d:\\devs\\github\\note\\unreal\\test\\source\\test\\testcharacter.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\source\\runtime\\experimental\\iris\\core\\public\\iris\\serialization\\irisobjectreferencepackagemap.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\iriscore\\uht\\irisobjectreferencepackagemap.generated.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementreplication.generated.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\rootmotionsource.generated.h",
+            "d:\\devs\\epic games\\unreal\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
+            "d:\\devs\\github\\note\\unreal\\test\\intermediate\\build\\win64\\unrealeditor\\inc\\test\\uht\\testcharacter.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
