@@ -93,4 +93,12 @@ Build/Android/res/*/*
 Plugins/**/Binaries/*
 Plugins/**/Intermediate/*
 
+# UnrealEngine Generated Files
+*/Build
+*/Binaries
+*/DerivedDataCache
+*/Intermediate
+*/Saved
+*.vsconfig
+
 # End of https://www.toptal.com/developers/gitignore/api/unrealengine
